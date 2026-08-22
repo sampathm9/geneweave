@@ -1,4 +1,5 @@
 from geneweaver.fasta import read_fasta
+from geneweaver.alignment import align_sequences
 
 
 def main():
