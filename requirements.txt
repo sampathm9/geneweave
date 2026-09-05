@@ -1,0 +1,6 @@
+biopython>=1.84
+numpy>=2.0
+pytest>=8.0
+numba>=0.60
+dask[distributed]>=2024.8.0
+textual>=0.80

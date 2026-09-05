@@ -1,5 +1,6 @@
 venv/
-_pycache_/
-*.pyc
-.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
 .vscode/
+*.log

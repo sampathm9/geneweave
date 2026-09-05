@@ -1,14 +1,15 @@
-def calculate_alignment_score(seq1, seq2):
-    # your logic here
-    if len(seq1) != len(seq2):
-        raise ValueError("Sequences must have the same length")
+from dataclasses import dataclass
 
-    score = 0
+@dataclass
+class ScoreResult:
+    score: float
+    severity: str
 
-    for nucleotide1, nucleotide2 in zip(seq1, seq2):
-        if nucleotide1 == nucleotide2:
-            score += 1
-        else:
-            score -= 1
-
-    return score
+def score_off_target(mismatches, length, pam_proximity=0.0):
+    if length <= 0:
+        raise ValueError("length must be positive")
+    identity = max(0.0, 1.0 - mismatches / length)
+    proximity = max(0.0, min(1.0, pam_proximity))
+    score = round(0.8 * identity + 0.2 * proximity, 4)
+    severity = "HIGH" if score >= 0.80 else "MEDIUM" if score >= 0.50 else "LOW"
+    return ScoreResult(score, severity)
